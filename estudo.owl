@@ -1,0 +1,105 @@
+Prefix(:=<http://www.semanticweb.org/utfpr/ontologies/2019/10/untitled-ontology-10#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.semanticweb.org/utfpr/ontologies/2019/10/untitled-ontology-10>
+
+Declaration(Class(:Adubo))
+Declaration(Class(:Agricultor))
+Declaration(Class(:Agrotoxico))
+Declaration(Class(:AplicaNoSolo))
+Declaration(Class(:Colheta))
+Declaration(Class(:ColhetaBoa))
+Declaration(Class(:ColhetaRuim))
+Declaration(Class(:Cultivo))
+Declaration(Class(:CultivoBom))
+Declaration(Class(:CultivoRuim))
+Declaration(Class(:Lucro))
+Declaration(Class(:Prejuízo))
+Declaration(Class(:ResultadoFinanceiro))
+Declaration(Class(:pragas))
+Declaration(ObjectProperty(:aplicar))
+Declaration(ObjectProperty(:colher))
+Declaration(ObjectProperty(:plantar))
+Declaration(ObjectProperty(:tem))
+Declaration(NamedIndividual(:Eloi))
+Declaration(NamedIndividual(:EstercoDeVaca))
+Declaration(NamedIndividual(:FerrugemDaSoja))
+Declaration(NamedIndividual(:Filho))
+Declaration(NamedIndividual(:Milho))
+Declaration(NamedIndividual(:Percevejo))
+Declaration(NamedIndividual(:Romário))
+Declaration(NamedIndividual(:Soja))
+Declaration(NamedIndividual(:Tilt))
+
+############################
+#   Classes
+############################
+
+# Class: :Adubo (:Adubo)
+
+SubClassOf(:Adubo :AplicaNoSolo)
+
+# Class: :Agrotoxico (:Agrotoxico)
+
+SubClassOf(:Agrotoxico :AplicaNoSolo)
+
+# Class: :Colheta (:Colheta)
+
+EquivalentClasses(:Colheta ObjectIntersectionOf(:Colheta ObjectSomeValuesFrom(:tem :Cultivo)))
+
+# Class: :ColhetaBoa (:ColhetaBoa)
+
+SubClassOf(:ColhetaBoa :Colheta)
+
+# Class: :ColhetaRuim (:ColhetaRuim)
+
+SubClassOf(:ColhetaRuim :Colheta)
+
+# Class: :CultivoBom (:CultivoBom)
+
+EquivalentClasses(:CultivoBom ObjectIntersectionOf(:Cultivo ObjectComplementOf(ObjectIntersectionOf(ObjectSomeValuesFrom(:aplicar :Agrotoxico) ObjectSomeValuesFrom(:tem :pragas)))))
+SubClassOf(:CultivoBom :Cultivo)
+
+# Class: :CultivoRuim (:CultivoRuim)
+
+EquivalentClasses(:CultivoRuim ObjectIntersectionOf(:Cultivo ObjectIntersectionOf(ObjectComplementOf(ObjectSomeValuesFrom(:aplicar :Agrotoxico)) ObjectSomeValuesFrom(:tem :pragas))))
+SubClassOf(:CultivoRuim :Cultivo)
+
+# Class: :Lucro (:Lucro)
+
+SubClassOf(:Lucro :ResultadoFinanceiro)
+
+# Class: :Prejuízo (:Prejuízo)
+
+SubClassOf(:Prejuízo :ResultadoFinanceiro)
+
+
+############################
+#   Named Individuals
+############################
+
+# Individual: :EstercoDeVaca (:EstercoDeVaca)
+
+ClassAssertion(:Adubo :EstercoDeVaca)
+
+# Individual: :Milho (:Milho)
+
+ClassAssertion(:Cultivo :Milho)
+ObjectPropertyAssertion(:tem :Milho :Percevejo)
+
+# Individual: :Romário (:Romário)
+
+ClassAssertion(:Agricultor :Romário)
+
+# Individual: :Soja (:Soja)
+
+ClassAssertion(:Cultivo :Soja)
+ObjectPropertyAssertion(:tem :Soja :FerrugemDaSoja)
+
+
+)
