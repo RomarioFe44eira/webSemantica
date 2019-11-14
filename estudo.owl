@@ -50,6 +50,10 @@ SubClassOf(:Adubo :AplicaNoSolo)
 
 SubClassOf(:Agrotoxico :AplicaNoSolo)
 
+# Class: :Colheta (:Colheta)
+
+EquivalentClasses(:Colheta ObjectIntersectionOf(:Cultivo ObjectSomeValuesFrom(:colher :Cultivo)))
+
 # Class: :ColhetaBoa (:ColhetaBoa)
 
 SubClassOf(:ColhetaBoa :Colheta)
@@ -60,7 +64,7 @@ SubClassOf(:ColhetaRuim :Colheta)
 
 # Class: :CultivoBom (:CultivoBom)
 
-EquivalentClasses(:CultivoBom ObjectIntersectionOf(:Cultivo ObjectComplementOf(ObjectSomeValuesFrom(:tem :pragas)) ObjectSomeValuesFrom(:aplicar :Agrotoxico)))
+EquivalentClasses(:CultivoBom ObjectIntersectionOf(:Cultivo ObjectComplementOf(ObjectSomeValuesFrom(:tem :pragas)) ObjectSomeValuesFrom(:aplicar :Adubo) ObjectSomeValuesFrom(:aplicar :Agrotoxico)))
 SubClassOf(:CultivoBom :Cultivo)
 
 # Class: :CultivoOrgânico (:CultivoOrgânico)
@@ -79,6 +83,7 @@ SubClassOf(:Ganhos :Resultado)
 
 # Class: :Perdas (:Perdas)
 
+EquivalentClasses(:Perdas ObjectIntersectionOf(:Colheta ObjectComplementOf(ObjectSomeValuesFrom(:tem :Perdas)) ObjectSomeValuesFrom(:tem :CultivoBom)))
 SubClassOf(:Perdas :Resultado)
 
 
