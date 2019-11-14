@@ -56,10 +56,12 @@ EquivalentClasses(:Colheta ObjectIntersectionOf(:Cultivo ObjectSomeValuesFrom(:c
 
 # Class: :ColhetaBoa (:ColhetaBoa)
 
+EquivalentClasses(:ColhetaBoa ObjectIntersectionOf(:Colheta ObjectComplementOf(ObjectSomeValuesFrom(:tem :pragas)) ObjectSomeValuesFrom(:tem :CultivoBom)))
 SubClassOf(:ColhetaBoa :Colheta)
 
 # Class: :ColhetaRuim (:ColhetaRuim)
 
+EquivalentClasses(:ColhetaRuim ObjectIntersectionOf(:Colheta ObjectSomeValuesFrom(:tem :CultivoRuim) ObjectSomeValuesFrom(:tem :pragas)))
 SubClassOf(:ColhetaRuim :Colheta)
 
 # Class: :CultivoBom (:CultivoBom)
@@ -79,11 +81,12 @@ SubClassOf(:CultivoRuim :Cultivo)
 
 # Class: :Ganhos (:Ganhos)
 
+EquivalentClasses(:Ganhos ObjectComplementOf(:Perdas))
 SubClassOf(:Ganhos :Resultado)
 
 # Class: :Perdas (:Perdas)
 
-EquivalentClasses(:Perdas ObjectIntersectionOf(:Colheta ObjectComplementOf(ObjectSomeValuesFrom(:tem :Perdas)) ObjectSomeValuesFrom(:tem :CultivoBom)))
+EquivalentClasses(:Perdas ObjectIntersectionOf(ObjectComplementOf(ObjectSomeValuesFrom(:tem :CultivoBom)) ObjectComplementOf(ObjectSomeValuesFrom(:tem :pragas))))
 SubClassOf(:Perdas :Resultado)
 
 
