@@ -20,7 +20,7 @@ Declaration(Class(:CultivoBom))
 Declaration(Class(:CultivoRuim))
 Declaration(Class(:Lucro))
 Declaration(Class(:Prejuízo))
-Declaration(Class(:ResultadoFinanceiro))
+Declaration(Class(:Receita))
 Declaration(Class(:pragas))
 Declaration(ObjectProperty(:aplicar))
 Declaration(ObjectProperty(:colher))
@@ -48,10 +48,6 @@ SubClassOf(:Adubo :AplicaNoSolo)
 
 SubClassOf(:Agrotoxico :AplicaNoSolo)
 
-# Class: :Colheta (:Colheta)
-
-EquivalentClasses(:Colheta ObjectIntersectionOf(:Colheta ObjectSomeValuesFrom(:tem :Cultivo)))
-
 # Class: :ColhetaBoa (:ColhetaBoa)
 
 SubClassOf(:ColhetaBoa :Colheta)
@@ -72,11 +68,11 @@ SubClassOf(:CultivoRuim :Cultivo)
 
 # Class: :Lucro (:Lucro)
 
-SubClassOf(:Lucro :ResultadoFinanceiro)
+SubClassOf(:Lucro :Receita)
 
 # Class: :Prejuízo (:Prejuízo)
 
-SubClassOf(:Prejuízo :ResultadoFinanceiro)
+SubClassOf(:Prejuízo :Receita)
 
 
 ############################
@@ -89,7 +85,6 @@ ClassAssertion(:Adubo :EstercoDeVaca)
 
 # Individual: :Milho (:Milho)
 
-ClassAssertion(:Cultivo :Milho)
 ObjectPropertyAssertion(:tem :Milho :Percevejo)
 
 # Individual: :Romário (:Romário)
@@ -98,7 +93,6 @@ ClassAssertion(:Agricultor :Romário)
 
 # Individual: :Soja (:Soja)
 
-ClassAssertion(:Cultivo :Soja)
 ObjectPropertyAssertion(:tem :Soja :FerrugemDaSoja)
 
 
