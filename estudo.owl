@@ -17,10 +17,12 @@ Declaration(Class(:ColhetaBoa))
 Declaration(Class(:ColhetaRuim))
 Declaration(Class(:Cultivo))
 Declaration(Class(:CultivoBom))
+Declaration(Class(:CultivoOrgânico))
 Declaration(Class(:CultivoRuim))
-Declaration(Class(:Lucro))
-Declaration(Class(:Prejuízo))
-Declaration(Class(:Receita))
+Declaration(Class(:Cultura))
+Declaration(Class(:Ganhos))
+Declaration(Class(:Perdas))
+Declaration(Class(:Resultado))
 Declaration(Class(:pragas))
 Declaration(ObjectProperty(:aplicar))
 Declaration(ObjectProperty(:colher))
@@ -58,21 +60,26 @@ SubClassOf(:ColhetaRuim :Colheta)
 
 # Class: :CultivoBom (:CultivoBom)
 
-EquivalentClasses(:CultivoBom ObjectIntersectionOf(:Cultivo ObjectComplementOf(ObjectIntersectionOf(ObjectSomeValuesFrom(:aplicar :Agrotoxico) ObjectSomeValuesFrom(:tem :pragas)))))
+EquivalentClasses(:CultivoBom ObjectIntersectionOf(:Cultivo ObjectComplementOf(ObjectSomeValuesFrom(:tem :pragas)) ObjectSomeValuesFrom(:aplicar :Agrotoxico)))
 SubClassOf(:CultivoBom :Cultivo)
+
+# Class: :CultivoOrgânico (:CultivoOrgânico)
+
+EquivalentClasses(:CultivoOrgânico ObjectIntersectionOf(:Cultivo ObjectComplementOf(ObjectSomeValuesFrom(:aplicar :Agrotoxico))))
+SubClassOf(:CultivoOrgânico :Cultivo)
 
 # Class: :CultivoRuim (:CultivoRuim)
 
-EquivalentClasses(:CultivoRuim ObjectIntersectionOf(:Cultivo ObjectIntersectionOf(ObjectComplementOf(ObjectSomeValuesFrom(:aplicar :Agrotoxico)) ObjectSomeValuesFrom(:tem :pragas))))
+EquivalentClasses(:CultivoRuim ObjectComplementOf(:CultivoBom))
 SubClassOf(:CultivoRuim :Cultivo)
 
-# Class: :Lucro (:Lucro)
+# Class: :Ganhos (:Ganhos)
 
-SubClassOf(:Lucro :Receita)
+SubClassOf(:Ganhos :Resultado)
 
-# Class: :Prejuízo (:Prejuízo)
+# Class: :Perdas (:Perdas)
 
-SubClassOf(:Prejuízo :Receita)
+SubClassOf(:Perdas :Resultado)
 
 
 ############################
