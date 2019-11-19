@@ -3,18 +3,18 @@ Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
 Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
 Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
 Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(obda:=<https://w3id.org/obda/vocabulary#>)
 Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 
 
 Ontology(<http://www.semanticweb.org/utfpr/ontologies/2019/10/untitled-ontology-10>
 
 Declaration(Class(:Adubo))
-Declaration(Class(:Agricultor))
 Declaration(Class(:Agrotoxico))
 Declaration(Class(:AplicaNoSolo))
+Declaration(Class(:Colheita))
 Declaration(Class(:ColheitaBoa))
 Declaration(Class(:ColheitaRuim))
-Declaration(Class(:Colheta))
 Declaration(Class(:Cultivo))
 Declaration(Class(:CultivoBom))
 Declaration(Class(:CultivoOrgânico))
@@ -26,15 +26,10 @@ Declaration(Class(:Resultado))
 Declaration(Class(:pragas))
 Declaration(ObjectProperty(:aplicar))
 Declaration(ObjectProperty(:colher))
-Declaration(ObjectProperty(:plantar))
 Declaration(ObjectProperty(:tem))
 Declaration(NamedIndividual(:ArcefatoNortox))
-Declaration(NamedIndividual(:Corós))
-Declaration(NamedIndividual(:Eloi))
-Declaration(NamedIndividual(:EstercoDeVaca))
 Declaration(NamedIndividual(:Milho))
 Declaration(NamedIndividual(:Percevejo))
-Declaration(NamedIndividual(:Romário))
 Declaration(NamedIndividual(:Soja))
 Declaration(NamedIndividual(:Tilt))
 
@@ -50,19 +45,19 @@ SubClassOf(:Adubo :AplicaNoSolo)
 
 SubClassOf(:Agrotoxico :AplicaNoSolo)
 
+# Class: :Colheita (:Colheita)
+
+EquivalentClasses(:Colheita ObjectSomeValuesFrom(:colher :Cultivo))
+
 # Class: :ColheitaBoa (:ColheitaBoa)
 
-EquivalentClasses(:ColheitaBoa ObjectIntersectionOf(:Colheta :CultivoBom ObjectComplementOf(ObjectSomeValuesFrom(:tem :pragas))))
-SubClassOf(:ColheitaBoa :Colheta)
+EquivalentClasses(:ColheitaBoa ObjectIntersectionOf(:CultivoBom ObjectComplementOf(ObjectSomeValuesFrom(:tem :pragas))))
+SubClassOf(:ColheitaBoa :Colheita)
 
 # Class: :ColheitaRuim (:ColheitaRuim)
 
-EquivalentClasses(:ColheitaRuim ObjectIntersectionOf(:Colheta :CultivoRuim ObjectSomeValuesFrom(:tem :pragas)))
-SubClassOf(:ColheitaRuim :Colheta)
-
-# Class: :Colheta (:Colheta)
-
-EquivalentClasses(:Colheta ObjectIntersectionOf(:Cultivo ObjectSomeValuesFrom(:colher :Cultivo)))
+EquivalentClasses(:ColheitaRuim ObjectIntersectionOf(:CultivoRuim ObjectSomeValuesFrom(:tem :pragas)))
+SubClassOf(:ColheitaRuim :Colheita)
 
 # Class: :CultivoBom (:CultivoBom)
 
@@ -86,7 +81,7 @@ SubClassOf(:Ganhos :Resultado)
 
 # Class: :Perdas (:Perdas)
 
-EquivalentClasses(:Perdas ObjectIntersectionOf(ObjectComplementOf(:CultivoBom) ObjectSomeValuesFrom(:tem :pragas)))
+EquivalentClasses(:Perdas ObjectIntersectionOf(ObjectComplementOf(:ColheitaBoa) ObjectSomeValuesFrom(:tem :pragas)))
 SubClassOf(:Perdas :Resultado)
 
 
@@ -98,38 +93,21 @@ SubClassOf(:Perdas :Resultado)
 
 ClassAssertion(:Agrotoxico :ArcefatoNortox)
 
-# Individual: :Corós (:Corós)
-
-ClassAssertion(:pragas :Corós)
-
-# Individual: :Eloi (:Eloi)
-
-ClassAssertion(:Agricultor :Eloi)
-
-# Individual: :EstercoDeVaca (:EstercoDeVaca)
-
-ClassAssertion(:Adubo :EstercoDeVaca)
-
 # Individual: :Milho (:Milho)
 
 ClassAssertion(:Cultura :Milho)
-ObjectPropertyAssertion(:aplicar :Milho :Tilt)
 ObjectPropertyAssertion(:tem :Milho :Percevejo)
 
 # Individual: :Percevejo (:Percevejo)
 
 ClassAssertion(:pragas :Percevejo)
 
-# Individual: :Romário (:Romário)
-
-ClassAssertion(:Agricultor :Romário)
-
 # Individual: :Soja (:Soja)
 
 ClassAssertion(:Cultura :Soja)
 ObjectPropertyAssertion(:aplicar :Soja :ArcefatoNortox)
 ObjectPropertyAssertion(:aplicar :Soja :Tilt)
-ObjectPropertyAssertion(:tem :Soja :Percevejo)
+NegativeObjectPropertyAssertion(:tem :Soja :Percevejo)
 
 # Individual: :Tilt (:Tilt)
 
