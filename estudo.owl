@@ -28,6 +28,7 @@ Declaration(ObjectProperty(:aplicar))
 Declaration(ObjectProperty(:colher))
 Declaration(ObjectProperty(:tem))
 Declaration(NamedIndividual(:ArcefatoNortox))
+Declaration(NamedIndividual(:Coros))
 Declaration(NamedIndividual(:Milho))
 Declaration(NamedIndividual(:Percevejo))
 Declaration(NamedIndividual(:Soja))
@@ -93,9 +94,15 @@ SubClassOf(:Perdas :Resultado)
 
 ClassAssertion(:Agrotoxico :ArcefatoNortox)
 
+# Individual: :Coros (:Coros)
+
+ClassAssertion(:pragas :Coros)
+
 # Individual: :Milho (:Milho)
 
+ClassAssertion(:CultivoRuim :Milho)
 ClassAssertion(:Cultura :Milho)
+ObjectPropertyAssertion(:tem :Milho :Coros)
 ObjectPropertyAssertion(:tem :Milho :Percevejo)
 
 # Individual: :Percevejo (:Percevejo)
@@ -107,7 +114,6 @@ ClassAssertion(:pragas :Percevejo)
 ClassAssertion(:Cultura :Soja)
 ObjectPropertyAssertion(:aplicar :Soja :ArcefatoNortox)
 ObjectPropertyAssertion(:aplicar :Soja :Tilt)
-NegativeObjectPropertyAssertion(:tem :Soja :Percevejo)
 
 # Individual: :Tilt (:Tilt)
 
